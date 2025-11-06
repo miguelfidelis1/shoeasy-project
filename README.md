@@ -24,13 +24,14 @@ Criar uma interface elegante e responsiva para um e-commerce de calçados, desta
 ---
 
 ## 🖥️ Estrutura do Projeto
-´
+
+```
 ├── index.html
 ├── style.css
 ├── img/
 │ └── (imagens dos produtos e banners)
 └── README.md
-´
+````
 ---
 
 ## 🚀 Como Visualizar

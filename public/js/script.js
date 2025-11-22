@@ -1,4 +1,3 @@
-// --- 1. Navbar Efeito Scroll ---
 const navbar = document.getElementById('navbar');
 
 function handleNavbarScroll() {
@@ -11,12 +10,8 @@ function handleNavbarScroll() {
 
 window.addEventListener('scroll', handleNavbarScroll);
 
-
-// --- 2. Scroll Reveal Animation (Elementos aparecem ao rolar) ---
-// Seleciona todos os elementos que devem ser animados
 const scrollElements = document.querySelectorAll(".js-scroll");
 
-// Função que verifica se o elemento está visível na tela
 const elementInView = (el, dividend = 1) => {
   const elementTop = el.getBoundingClientRect().top;
   return (
@@ -25,40 +20,29 @@ const elementInView = (el, dividend = 1) => {
   );
 };
 
-// Função que adiciona a classe 'scrolled-in' para ativar o CSS
 const displayScrollElement = (element) => {
   element.classList.add("scrolled-in");
 };
 
-// Usando IntersectionObserver para performance moderna
-// Ele "observa" quando os elementos entram na janela de visualização
 const observer = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {
-        // Se o elemento entrou na tela (isIntersecting é true)
         if (entry.isIntersecting) {
             displayScrollElement(entry.target);
-            // Para de observar o elemento depois que ele já animou uma vez
             observer.unobserve(entry.target);
         }
     });
 }, {
-    threshold: 0.2 // Inicia a animação quando 20% do elemento estiver visível
+    threshold: 0.2
 });
 
-
-// Aplica o observador a todos os elementos
 scrollElements.forEach((el) => {
     observer.observe(el);
 });
 
-// ... (Mantenha o código anterior do Navbar Scroll e Scroll Reveal) ...
-
-// --- 3. Menu Mobile (Toggle) ---
 const mobileBtn = document.getElementById('mobile-menu-btn');
 const navLinks = document.getElementById('nav-links');
 const closeBtn = document.querySelector('.mobile-close-btn');
 
-// Função abrir/fechar
 function toggleMenu() {
     navLinks.classList.toggle('active');
 }
@@ -66,15 +50,12 @@ function toggleMenu() {
 mobileBtn.addEventListener('click', toggleMenu);
 closeBtn.addEventListener('click', toggleMenu);
 
-// Fechar menu ao clicar em um link (UX melhor)
 document.querySelectorAll('.nav-link').forEach(link => {
     link.addEventListener('click', () => {
         navLinks.classList.remove('active');
     });
 });
 
-
-// --- 4. Scroll Spy (Link Ativo na Navbar) ---
 const sections = document.querySelectorAll('section');
 const navItems = document.querySelectorAll('.nav-link');
 
@@ -85,7 +66,6 @@ window.addEventListener('scroll', () => {
         const sectionTop = section.offsetTop;
         const sectionHeight = section.clientHeight;
         
-        // Verifica se o scroll passou de 1/3 da seção
         if (pageYOffset >= (sectionTop - sectionHeight / 3)) {
             currentSection = section.getAttribute('id');
         }
@@ -99,9 +79,6 @@ window.addEventListener('scroll', () => {
     });
 });
 
-// --- 5. Lógica do Carrinho de Compras ---
-
-// Elementos do DOM
 const cartIcon = document.querySelector('.cart-icon-container');
 const cartSidebar = document.getElementById('cart-sidebar');
 const cartOverlay = document.getElementById('cart-overlay');
@@ -111,9 +88,8 @@ const cartTotalElement = document.getElementById('cart-total-price');
 const cartBadge = document.querySelector('.cart-badge');
 const addToCartButtons = document.querySelectorAll('.add-cart-btn');
 
-let cart = []; // Array que guarda os produtos
+let cart = [];
 
-// ABRIR E FECHAR CARRINHO
 function openCart() {
     cartSidebar.classList.add('open');
     cartOverlay.classList.add('open');
@@ -128,17 +104,15 @@ cartIcon.addEventListener('click', openCart);
 closeCartBtn.addEventListener('click', closeCart);
 cartOverlay.addEventListener('click', closeCart);
 
-// ADICIONAR AO CARRINHO
 addToCartButtons.forEach(button => {
     button.addEventListener('click', (e) => {
-        // Pega os dados do botão clicado (dataset)
-        const buttonTarget = e.currentTarget; // Garante que pegamos o botão, não o ícone dentro
+        const buttonTarget = e.currentTarget;
         const name = buttonTarget.dataset.name;
         const price = parseFloat(buttonTarget.dataset.price);
         const img = buttonTarget.dataset.img;
 
         const newProduct = {
-            id: Date.now(), // ID único baseado no tempo
+            id: Date.now(),
             name: name,
             price: price,
             img: img
@@ -146,23 +120,19 @@ addToCartButtons.forEach(button => {
 
         cart.push(newProduct);
         updateCartUI();
-        openCart(); // Abre o carrinho automaticamente para mostrar o item
+        openCart();
     });
 });
 
-// REMOVER ITEM
 function removeItem(id) {
     cart = cart.filter(product => product.id !== id);
     updateCartUI();
 }
 
-// ATUALIZAR A INTERFACE (HTML) DO CARRINHO
 function updateCartUI() {
-    // 1. Atualizar Badge (Bolinha vermelha)
     cartBadge.innerText = cart.length;
 
-    // 2. Atualizar Lista de Itens
-    cartItemsContainer.innerHTML = ''; // Limpa tudo antes de redesenhar
+    cartItemsContainer.innerHTML = '';
 
     if (cart.length === 0) {
         cartItemsContainer.innerHTML = `
@@ -187,28 +157,21 @@ function updateCartUI() {
         });
     }
 
-    // 3. Atualizar Preço Total
     const total = cart.reduce((acc, item) => acc + item.price, 0);
     cartTotalElement.innerText = `R$ ${total.toFixed(2).replace('.', ',')}`;
 }
 
-// --- 6. Persistência de Dados (LocalStorage) ---
-
 function saveCartToStorage() {
-    // Transforma o array de objetos em um texto JSON e salva no navegador
     localStorage.setItem('shoeasyCart', JSON.stringify(cart));
 }
 
 function loadCartFromStorage() {
-    // Tenta pegar os dados salvos
     const savedCart = localStorage.getItem('shoeasyCart');
     
     if (savedCart) {
-        // Se existirem dados, converte de volta para Array e atualiza a tela
         cart = JSON.parse(savedCart);
         updateCartUI();
     }
 }
 
-// Carregar o carrinho assim que a página abrir
 document.addEventListener('DOMContentLoaded', loadCartFromStorage);

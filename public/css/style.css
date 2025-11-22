@@ -1,0 +1,487 @@
+/* --- 1. Configurações Globais e Variáveis --- */
+:root {
+    /* Cores Palette */
+    --bg-color: #FAFAFA;
+    --bg-light: #F0F2F5;
+    --text-dark: #121212;
+    --text-gray: #666666;
+    --accent-color: #FF4757;
+    --accent-dark: #E84118;
+    --card-blue-bg: #EBF4F9;
+    --card-green-bg: #EAF5EB;
+    
+    /* Fontes e Efeitos */
+    --font-main: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    --transition-smooth: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+    --box-shadow-hover: 0 20px 40px rgba(0,0,0,0.08);
+}
+
+/* Reset Moderno */
+* { margin: 0; padding: 0; box-sizing: border-box; text-decoration: none; list-style: none; border: none; outline: none;}
+html { scroll-behavior: smooth; }
+
+/* --- Scrollbar Personalizada (Toque Premium) --- */
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-track { background: var(--bg-color); }
+::-webkit-scrollbar-thumb { background: #ccc; border-radius: 10px; }
+::-webkit-scrollbar-thumb:hover { background: var(--accent-color); }
+
+/* --- Seleção de Texto Personalizada --- */
+::selection { background-color: var(--accent-color); color: white; }
+
+body {
+    font-family: var(--font-main);
+    background-color: var(--bg-color);
+    color: var(--text-dark);
+    overflow-x: hidden;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased; /* Fontes mais nítidas */
+}
+
+/* Classes Utilitárias */
+.wrapper { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+.section-pad { padding: 100px 0; }
+.bg-light { background-color: var(--bg-light); }
+.highlight { color: var(--accent-color); }
+
+.btn-primary {
+    display: inline-block;
+    padding: 14px 35px;
+    background-color: var(--text-dark);
+    color: white;
+    border-radius: 50px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    transition: var(--transition-smooth);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    cursor: pointer;
+}
+.btn-primary:hover { 
+    background-color: var(--accent-color); 
+    transform: translateY(-3px); 
+    box-shadow: 0 15px 30px rgba(255, 71, 87, 0.3); 
+}
+/* Efeito de Clique (Feedback tátil) */
+.btn-primary:active { transform: scale(0.95); }
+
+
+/* --- 2. Navbar Premium --- */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem 5%;
+    background: transparent;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+    transition: var(--transition-smooth);
+}
+
+.navbar.scrolled {
+    background: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(15px); /* Efeito vidro */
+    -webkit-backdrop-filter: blur(15px); /* Safari */
+    padding: 1rem 5%;
+    box-shadow: 0 5px 30px rgba(0,0,0,0.05);
+}
+
+.logo { 
+    font-size: 1.8rem; 
+    font-weight: 900; 
+    color: var(--text-dark); 
+    letter-spacing: -1px; 
+    z-index: 1001;
+}
+
+.nav-links { display: flex; gap: 2.5rem; align-items: center;}
+
+.nav-links a { 
+    color: var(--text-dark); 
+    font-weight: 500; 
+    font-size: 0.95rem; 
+    opacity: 0.6; 
+    transition: var(--transition-smooth); 
+    position: relative;
+}
+
+.nav-links a:hover, .nav-links a.active { opacity: 1; color: var(--text-dark); }
+
+.nav-links a::after { 
+    content: ''; 
+    position: absolute; 
+    width: 0; 
+    height: 2px; 
+    bottom: -5px; 
+    left: 50%; 
+    transform: translateX(-50%);
+    background-color: var(--accent-color); 
+    transition: var(--transition-smooth);
+}
+
+.nav-links a:hover::after, .nav-links a.active::after { width: 100%; }
+
+.user-actions { z-index: 1001; display: flex; align-items: center; }
+.cart-icon-container { position: relative; cursor: pointer; padding: 5px; } /* Aumentei a área de toque */
+.cart-icon-container span { font-size: 1.6rem; transition: var(--transition-smooth); }
+.cart-icon-container:hover span:first-child { color: var(--accent-color); transform: scale(1.1); }
+.cart-icon-container:active span:first-child { transform: scale(0.9); }
+
+/* Substitua a classe .cart-badge antiga por esta */
+.cart-badge {
+    position: absolute;
+    top: -12px;         /* Ajustei para subir um pouco mais */
+    right: -12px;       /* Ajustei para ir mais para a direita */
+    
+    background-color: var(--accent-color);
+    color: white;
+    
+    /* Tamanho da fonte e peso */
+    font-size: 5px; 
+    font-weight: 700;
+    
+    /* O SEGREDO DO CÍRCULO PERFEITO */
+    /* Largura e Altura devem ser IGUAIS e fixas */
+    width: 30px;       
+    height: 30px;      
+    
+    border-radius: 50%; /* Transforma o quadrado em círculo */
+    
+    /* Centralizar o número perfeitamente */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+    /* Acabamento */
+    border: 2px solid white; /* Borda branca para separar do ícone */
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2); /* Sombra leve para destacar */
+    z-index: 10;
+}
+
+/* --- Menu Mobile (Responsividade) --- */
+.mobile-menu-btn, .mobile-close-btn { display: none; cursor: pointer; font-size: 1.5rem; color: var(--text-dark); }
+
+@media (max-width: 968px) {
+    .mobile-menu-btn { display: block; z-index: 1001; }
+    
+    .nav-links {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        height: 100vh;
+        width: 75%; /* Um pouco mais largo para conforto */
+        background: rgba(255, 255, 255, 0.98); /* Quase sólido */
+        backdrop-filter: blur(10px);
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 2.5rem;
+        box-shadow: -10px 0 50px rgba(0,0,0,0.15);
+        transition: 0.5s cubic-bezier(0.77, 0, 0.175, 1);
+        z-index: 999;
+    }
+
+    .nav-links.active { right: 0; }
+
+    .mobile-close-btn {
+        display: block;
+        position: absolute;
+        top: 25px;
+        right: 25px;
+        font-size: 2rem;
+        padding: 10px; /* Área de toque maior */
+    }
+    
+    .nav-links a { font-size: 1.4rem; font-weight: 600; }
+}
+
+
+/* --- 3. Hero Section --- */
+.hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 10%;
+    position: relative;
+    overflow: hidden;
+    padding-top: 80px;
+}
+
+.hero-content { max-width: 500px; z-index: 2; }
+.hero-content h1 { 
+    font-size: 4.5rem; 
+    line-height: 1.05; 
+    margin-bottom: 1.5rem; 
+    color: var(--text-dark); 
+    font-weight: 800;
+}
+.hero-content p { font-size: 1.2rem; color: var(--text-gray); margin-bottom: 2.5rem; max-width: 400px;}
+
+.hero-image { position: relative; width: 50%; height: 80vh; display: flex; align-items: center; justify-content: center; }
+.circle-bg { position: absolute; width: 550px; height: 550px; background: radial-gradient(circle at center, #e8e8e8 0%, #fafafa 70%); border-radius: 50%; z-index: 1; }
+.shoe-floating { width: 110%; max-width: 700px; z-index: 2; transform: rotate(-20deg); filter: drop-shadow(0 25px 40px rgba(0,0,0,0.25)); animation: float 4s ease-in-out infinite; }
+
+@keyframes float {
+    0% { transform: translateY(0px) rotate(-20deg); }
+    50% { transform: translateY(-25px) rotate(-18deg); }
+    100% { transform: translateY(0px) rotate(-20deg); }
+}
+
+
+/* --- 4. Shop Section (Grid de Produtos) --- */
+.section-header { text-align: center; margin-bottom: 4rem; padding: 0 20px;}
+.section-header h2 { font-size: 2.5rem; margin-bottom: 1rem; }
+.section-header p { color: var(--text-gray); max-width: 600px; margin: 0 auto;}
+
+.product-grid {
+    display: grid;
+    /* MELHORIA: Diminuí o minmax para 260px para caber melhor em celulares pequenos */
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 2rem;
+}
+
+.product-card {
+    background: white;
+    border-radius: 20px;
+    overflow: hidden;
+    transition: var(--transition-smooth);
+    cursor: pointer;
+    position: relative; /* Para posicionamento */
+}
+
+.product-card:hover { box-shadow: var(--box-shadow-hover); transform: translateY(-10px); }
+
+.card-image {
+    height: 320px; /* Levemente ajustado */
+    background-color: var(--bg-light);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+    transition: var(--transition-smooth);
+}
+
+.card-blue { background-color: var(--card-blue-bg); }
+.card-green { background-color: var(--card-green-bg); }
+
+.card-image img { width: 85%; transition: var(--transition-smooth); filter: drop-shadow(0 10px 20px rgba(0,0,0,0.1)); }
+.product-card:hover .card-image img { transform: scale(1.15) rotate(-5deg); }
+
+.add-cart-btn {
+    position: absolute;
+    bottom: 15px;
+    right: 15px;
+    width: 45px; height: 45px; /* Ajuste fino */
+    border-radius: 50%;
+    background: white;
+    color: var(--text-dark);
+    display: flex; align-items: center; justify-content: center;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    cursor: pointer;
+    transition: var(--transition-smooth);
+    opacity: 0;
+    transform: translateY(20px);
+    z-index: 5;
+}
+
+.product-card:hover .add-cart-btn { opacity: 1; transform: translateY(0); }
+.add-cart-btn:hover { background-color: var(--accent-color); color: white; transform: scale(1.1) !important; }
+.add-cart-btn:active { transform: scale(0.9) !important; }
+
+/* No mobile, o botão de comprar deve estar sempre visível ou fácil de acessar */
+@media (max-width: 768px) {
+    .add-cart-btn { opacity: 1; transform: translateY(0); bottom: 10px; right: 10px; width: 40px; height: 40px; box-shadow: 0 2px 10px rgba(0,0,0,0.1);}
+}
+
+.card-info { padding: 1.2rem; text-align: center; }
+.card-info h3 { font-size: 1.1rem; margin-bottom: 0.3rem; }
+.price { color: var(--accent-color); font-weight: 700; font-size: 1.1rem; }
+
+
+/* --- 5. Features Section --- */
+.features-box { display: flex; justify-content: space-between; text-align: center; gap: 2rem; }
+.feature-item { padding: 2rem; background: white; border-radius: 20px; transition: var(--transition-smooth); flex: 1; }
+.feature-item:hover { transform: translateY(-5px); box-shadow: var(--box-shadow-hover); }
+.icon-highlight { font-size: 3rem; color: var(--accent-color); margin-bottom: 1rem; }
+
+
+/* --- 6. Footer --- */
+footer { background: var(--text-dark); color: white; padding-top: 5rem; }
+.footer-content { display: flex; justify-content: space-between; margin-bottom: 4rem; flex-wrap: wrap; gap: 2rem;} /* Flex-wrap evita quebra ruim */
+.footer-logo h2 { font-size: 2rem; color: white; }
+.footer-logo p, .footer-social p { opacity: 0.6; margin-top: 10px; }
+.footer-links h3, .footer-social h3 { font-size: 1.2rem; margin-bottom: 1.5rem; color: white;}
+.footer-links li { margin-bottom: 10px; }
+.footer-links a { color: white; opacity: 0.6; transition: var(--transition-smooth); }
+.footer-links a:hover { opacity: 1; color: var(--accent-color); }
+.copyright { text-align: center; padding: 2rem 0; border-top: 1px solid rgba(255,255,255,0.1); }
+.copyright p { opacity: 0.5; font-size: 0.9rem; }
+
+
+/* --- 7. Animações --- */
+.js-scroll { opacity: 0; transition: all 0.8s ease-in-out; }
+.fade-up { transform: translateY(40px); }
+.fade-in { transform: scale(0.95); }
+.js-scroll.scrolled-in { opacity: 1; transform: translateY(0) scale(1); }
+
+
+/* --- 8. Responsividade AVANÇADA (Mobile First Adjustment) --- */
+@media (max-width: 968px) {
+    .wrapper { padding: 0 20px; } /* Margem de segurança lateral */
+    .section-pad { padding: 60px 0; } /* Menos espaço em branco no mobile */
+
+    .hero { flex-direction: column; text-align: center; padding: 120px 5% 60px 5%; height: auto; min-height: auto; }
+    .hero-content { margin-bottom: 3rem; max-width: 100%; }
+    .hero-content h1 { font-size: 3rem; margin-bottom: 1rem; } /* Fonte menor para caber */
+    .hero-content p { font-size: 1rem; margin-bottom: 1.5rem; }
+    
+    .hero-image { width: 100%; height: 350px; margin-top: 2rem;}
+    .circle-bg { width: 300px; height: 300px; }
+    .shoe-floating { width: 80%; max-width: 350px; }
+    
+    .features-box { flex-direction: column; gap: 1.5rem; }
+    .footer-content { flex-direction: column; text-align: center; align-items: center; }
+}
+
+@media (max-width: 480px) {
+    /* Ajustes para celulares pequenos */
+    .hero-content h1 { font-size: 2.5rem; }
+    .navbar { padding: 1rem 5%; }
+    .logo { font-size: 1.5rem; }
+    .product-grid { grid-template-columns: 1fr; } /* 1 coluna em telas muito pequenas */
+}
+
+
+/* --- SEÇÕES EXTRAS --- */
+.promo-section {
+    background-color: #111;
+    color: white;
+    padding: 5rem 0;
+    margin: 4rem 0;
+    overflow: hidden;
+}
+.promo-container { display: flex; align-items: center; justify-content: space-between; gap: 4rem; }
+.promo-text { max-width: 500px; }
+.tag {
+    background-color: var(--accent-color);
+    color: white;
+    padding: 5px 15px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    display: inline-block;
+    margin-bottom: 1rem;
+}
+.promo-text h2 { font-size: 3rem; line-height: 1.1; margin-bottom: 1.5rem; }
+.promo-text p { color: #ccc; margin-bottom: 2rem; font-size: 1.1rem; }
+.btn-white { background-color: white; color: black; }
+.btn-white:hover { background-color: var(--accent-color); color: white; }
+.promo-img img {
+    width: 100%; max-width: 600px;
+    transform: scaleX(-1) rotate(15deg); 
+    filter: drop-shadow(0 20px 30px rgba(255,255,255,0.1));
+    transition: var(--transition-smooth);
+}
+.promo-section:hover .promo-img img { transform: scaleX(-1) rotate(5deg) scale(1.05); }
+
+
+/* Testimonials */
+.testimonial-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; }
+.testi-card {
+    background: white;
+    padding: 2.5rem;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.03);
+    border: 1px solid rgba(0,0,0,0.05);
+    transition: var(--transition-smooth);
+    display: flex; flex-direction: column; justify-content: space-between;
+}
+.testi-card:hover { transform: translateY(-5px); box-shadow: var(--box-shadow-hover); }
+.stars { color: #FFD700; margin-bottom: 1rem; }
+.comment { font-style: italic; color: var(--text-dark); font-size: 1rem; line-height: 1.6; margin-bottom: 2rem; }
+.user-profile { display: flex; align-items: center; gap: 1rem; }
+.user-profile img { width: 50px; height: 50px; border-radius: 50%; object-fit: cover; }
+.user-profile h4 { font-size: 1rem; margin-bottom: 2px; }
+.user-profile span { font-size: 0.85rem; color: var(--text-gray); }
+
+
+/* Newsletter */
+.newsletter { text-align: center; }
+.newsletter-content { max-width: 600px; margin: 0 auto; padding: 0 20px;}
+.newsletter h2 { font-size: 2.5rem; margin-bottom: 1rem; }
+.newsletter p { color: var(--text-gray); margin-bottom: 2.5rem; }
+.newsletter-form {
+    display: flex; gap: 10px; background: white; padding: 10px;
+    border-radius: 50px; box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+}
+.newsletter-form input {
+    flex: 1; padding: 15px 25px; border-radius: 50px;
+    font-size: 1rem; color: var(--text-dark); background: transparent;
+}
+.newsletter-form input::placeholder { color: #aaa; }
+
+@media (max-width: 968px) {
+    .promo-container { flex-direction: column-reverse; text-align: center; gap: 2rem; }
+    .promo-text h2 { font-size: 2.2rem; }
+    .promo-section { padding: 3rem 0; margin: 2rem 0;} /* Margem menor no mobile */
+    
+    .newsletter-form { flex-direction: column; background: transparent; box-shadow: none; padding: 0;}
+    .newsletter-form input { background: white; margin-bottom: 1rem; box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
+    .newsletter-form button { width: 100%; }
+}
+
+
+/* --- CARRINHO LATERAL (SIDEBAR) --- */
+.cart-overlay {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0,0,0,0.5); z-index: 2000; opacity: 0; visibility: hidden;
+    transition: var(--transition-smooth); backdrop-filter: blur(3px);
+}
+.cart-overlay.open { opacity: 1; visibility: visible; }
+
+.cart-sidebar {
+    position: fixed; top: 0; right: -100%; /* Mudado de pixel para % para garantir que suma */
+    width: 100%; max-width: 400px; height: 100vh; background: white;
+    z-index: 2001; box-shadow: -10px 0 30px rgba(0,0,0,0.1);
+    transition: 0.5s cubic-bezier(0.77, 0, 0.175, 1);
+    display: flex; flex-direction: column;
+}
+.cart-sidebar.open { right: 0; }
+
+.cart-header { padding: 20px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #eee; }
+.cart-header h3 { font-size: 1.4rem; }
+.close-cart-btn { cursor: pointer; font-size: 1.5rem; transition: 0.3s; padding: 5px;}
+.close-cart-btn:hover { transform: rotate(90deg); color: var(--accent-color); }
+
+.cart-items { flex: 1; padding: 20px; overflow-y: auto; }
+.empty-cart-msg { text-align: center; margin-top: 50px; color: var(--text-gray); display: flex; flex-direction: column; align-items: center; gap: 10px; }
+.empty-cart-msg span { font-size: 3rem; opacity: 0.3; }
+
+.cart-item {
+    display: flex; align-items: center; gap: 15px; margin-bottom: 20px; padding-bottom: 20px;
+    border-bottom: 1px solid #f5f5f5; animation: slideIn 0.3s ease forwards;
+}
+@keyframes slideIn {
+    from { opacity: 0; transform: translateX(20px); }
+    to { opacity: 1; transform: translateX(0); }
+}
+.cart-item img { width: 70px; height: 70px; object-fit: contain; background: var(--bg-light); border-radius: 10px; }
+.item-details { flex: 1; }
+.item-details h4 { font-size: 1rem; margin-bottom: 5px; }
+.item-details p { color: var(--accent-color); font-weight: bold; }
+.remove-item-btn { cursor: pointer; color: #ccc; transition: 0.3s; padding: 5px;}
+.remove-item-btn:hover { color: var(--accent-color); transform: scale(1.1); }
+
+.cart-footer { padding: 25px; background: #f9f9f9; border-top: 1px solid #eee; }
+.cart-total { display: flex; justify-content: space-between; font-size: 1.3rem; font-weight: 800; margin-bottom: 20px; }
+.btn-full { width: 100%; text-align: center; border-radius: 10px; }
+
+/* Responsivo Mobile Carrinho */
+@media (max-width: 500px) {
+    .cart-sidebar { max-width: 100%; width: 100%; }
+}

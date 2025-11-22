@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shoeasy | Conforto e Estilo</title>
+    
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+    
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <header class="navbar" id="navbar">
+        <div class="logo">Shoeasy.</div>
+        
+        <div class="mobile-menu-btn" id="mobile-menu-btn">
+            <span class="material-symbols-outlined">menu</span>
+        </div>
+
+        <nav>
+            <ul class="nav-links" id="nav-links">
+                <li class="mobile-close-btn">
+                    <span class="material-symbols-outlined">close</span>
+                </li>
+                
+                <li><a href="#home" class="nav-link active">Início</a></li>
+                <li><a href="#shop" class="nav-link">Coleção</a></li>
+                <li><a href="#features" class="nav-link">Qualidade</a></li>
+                <li><a href="footer" class="nav-link" onclick="window.scrollTo(0, document.body.scrollHeight); return false;">Contato</a></li>
+            </ul>
+        </nav>
+
+        <div class="user-actions">
+            <div class="cart-icon-container">
+                <span class="material-symbols-outlined" title="Carrinho">shopping_bag</span>
+                <span class="cart-badge">0</span>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section id="home" class="hero">
+            <div class="hero-content js-scroll fade-up">
+                <h1>Caminhe com <span class="highlight">Propósito.</span></h1>
+                <p>Design exclusivo, conforto incomparável. A nova coleção chegou para redefinir seus passos.</p>
+                <a href="#shop" class="btn-primary">Explorar Coleção</a>
+            </div>
+            <div class="hero-image js-scroll fade-in">
+                <div class="circle-bg"></div>
+                <img src="https://parspng.com/wp-content/uploads/2023/02/shoespng.parspng.com-12.png" alt="Tênis Shoeasy Destaque" class="shoe-floating">
+            </div>
+        </section>
+
+        <section id="shop" class="section-pad">
+            <div class="section-header js-scroll fade-up">
+                <h2>Os Favoritos da Semana</h2>
+                <p>Nossos modelos mais vendidos, prontos para você.</p>
+            </div>
+
+            <div class="product-grid wrapper">
+                <div class="product-card js-scroll fade-up">
+                    <div class="card-image">
+                        <img src="https://parspng.com/wp-content/uploads/2023/02/shoespng.parspng.com-12.png" alt="Air Flow 1">
+                        <button class="add-cart-btn" 
+                            data-name="Runner Flow X1" 
+                            data-price="499.90" 
+                            data-img="https://parspng.com/wp-content/uploads/2023/02/shoespng.parspng.com-12.png">
+                            <span class="material-symbols-outlined">add_shopping_cart</span>
+                        </button>
+                    </div>
+                    <div class="card-info">
+                        <h3>Runner Flow X1</h3>
+                        <p class="price">R$ 499,90</p>
+                    </div>
+                </div>
+
+                <div class="product-card js-scroll fade-up" style="transition-delay: 100ms;">
+                    <div class="card-image card-blue">
+                        <img src="https://parspng.com/wp-content/uploads/2023/02/shoespng.parspng.com-6.png" alt="Urban Pulse">
+                        <button class="add-cart-btn" 
+                            data-name="Urban Pulse Blue" 
+                            data-price="359.90" 
+                            data-img="https://parspng.com/wp-content/uploads/2023/02/shoespng.parspng.com-6.png">
+                            <span class="material-symbols-outlined">add_shopping_cart</span>
+                        </button>
+                    </div>
+                    <div class="card-info">
+                        <h3>Urban Pulse Blue</h3>
+                        <p class="price">R$ 359,90</p>
+                    </div>
+                </div>
+
+                <div class="product-card js-scroll fade-up" style="transition-delay: 200ms;">
+                    <div class="card-image card-green">
+                        <img src="https://parspng.com/wp-content/uploads/2023/02/shoespng.parspng.com-3.png" alt="Eco Stride">
+                        <button class="add-cart-btn" 
+                            data-name="Eco Stride V2" 
+                            data-price="529.90" 
+                            data-img="https://parspng.com/wp-content/uploads/2023/02/shoespng.parspng.com-3.png">
+                            <span class="material-symbols-outlined">add_shopping_cart</span>
+                        </button>
+                    </div>
+                    <div class="card-info">
+                        <h3>Eco Stride V2</h3>
+                        <p class="price">R$ 529,90</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="promo-section">
+            <div class="wrapper promo-container">
+                <div class="promo-text js-scroll fade-up">
+                    <span class="tag">Edição Limitada</span>
+                    <h2>Midnight Runner <br>Black Edition</h2>
+                    <p>Furtividade e performance. O design monocromático que você esperava, com a tecnologia de retorno de energia Shoeasy.</p>
+                    <a href="#" class="btn-primary btn-white">Comprar Agora</a>
+                </div>
+                <div class="promo-img js-scroll fade-in">
+                    <img src="https://freepngimg.com/thumb/shoes/27428-5-nike-shoes-transparent-background.png" alt="Edição Limitada">
+                </div>
+            </div>
+        </section>
+
+        <section id="features" class="section-pad bg-light">
+            <div class="wrapper features-box js-scroll fade-up">
+                <div class="feature-item">
+                    <span class="material-symbols-outlined icon-highlight">bolt</span>
+                    <h3>Tecnologia de Ponta</h3>
+                    <p>Amortecimento responsivo que devolve energia a cada passada.</p>
+                </div>
+                <div class="feature-item">
+                    <span class="material-symbols-outlined icon-highlight">eco</span>
+                    <h3>Materiais Sustentáveis</h3>
+                    <p>Produzidos com consciência, utilizando materiais reciclados.</p>
+                </div>
+                <div class="feature-item">
+                    <span class="material-symbols-outlined icon-highlight">verified</span>
+                    <h3>Garantia Shoeasy</h3>
+                    <p>30 dias para testar. Se não amar, devolvemos seu dinheiro.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="testimonials section-pad">
+            <div class="section-header js-scroll fade-up">
+                <h2>Quem usa, aprova</h2>
+                <p>Histórias reais de quem caminha com a gente.</p>
+            </div>
+            <div class="wrapper testimonial-grid">
+                <div class="testi-card js-scroll fade-up">
+                    <div class="stars">
+                        <span class="material-symbols-outlined">star</span><span class="material-symbols-outlined">star</span><span class="material-symbols-outlined">star</span><span class="material-symbols-outlined">star</span><span class="material-symbols-outlined">star</span>
+                    </div>
+                    <p class="comment">"Nunca usei nada igual. O design chama atenção na rua e o conforto é absurdo para trabalhar o dia todo."</p>
+                    <div class="user-profile">
+                        <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Foto Usuário">
+                        <div>
+                            <h4>Lucas M.</h4>
+                            <span>Designer Gráfico</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testi-card js-scroll fade-up" style="transition-delay: 100ms;">
+                    <div class="stars">
+                        <span class="material-symbols-outlined">star</span><span class="material-symbols-outlined">star</span><span class="material-symbols-outlined">star</span><span class="material-symbols-outlined">star</span><span class="material-symbols-outlined">star_half</span>
+                    </div>
+                    <p class="comment">"A entrega foi super rápida e a embalagem é linda. O tênis Eco Stride virou meu favorito para viagens."</p>
+                    <div class="user-profile">
+                        <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Foto Usuário">
+                        <div>
+                            <h4>Amanda S.</h4>
+                            <span>Arquiteta</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testi-card js-scroll fade-up" style="transition-delay: 200ms;">
+                    <div class="stars">
+                        <span class="material-symbols-outlined">star</span><span class="material-symbols-outlined">star</span><span class="material-symbols-outlined">star</span><span class="material-symbols-outlined">star</span><span class="material-symbols-outlined">star</span>
+                    </div>
+                    <p class="comment">"Qualidade surreal. Já tive tênis de marcas famosas que não duraram metade do que o meu Shoeasy durou."</p>
+                    <div class="user-profile">
+                        <img src="https://randomuser.me/api/portraits/men/85.jpg" alt="Foto Usuário">
+                        <div>
+                            <h4>Roberto F.</h4>
+                            <span>Personal Trainer</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="newsletter section-pad bg-light">
+            <div class="wrapper newsletter-content js-scroll fade-in">
+                <h2>Entre para o Clube</h2>
+                <p>Receba novidades, lançamentos exclusivos e <strong>10% OFF</strong> na primeira compra.</p>
+                
+                <form class="newsletter-form">
+                    <input type="email" placeholder="Seu melhor e-mail" required>
+                    <button type="submit" class="btn-primary">Inscrever-se</button>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content wrapper">
+            <div class="footer-logo">
+                <h2>Shoeasy.</h2>
+                <p>Redefinindo o conforto urbano.</p>
+            </div>
+            <div class="footer-links">
+                <h3>Navegação</h3>
+                <ul>
+                    <li><a href="#home">Início</a></li>
+                    <li><a href="#shop">Loja</a></li>
+                    <li><a href="#">Contato</a></li>
+                </ul>
+            </div>
+            <div class="footer-social">
+                <h3>Social</h3>
+                <p>@shoeasy_project</p>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>© 2023 Shoeasy Project. Feito para evoluir.</p>
+        </div>
+    </footer>
+
+    <div class="cart-overlay" id="cart-overlay"></div>
+    <div class="cart-sidebar" id="cart-sidebar">
+        <div class="cart-header">
+            <h3>Seu Carrinho</h3>
+            <span class="material-symbols-outlined close-cart-btn">close</span>
+        </div>
+        
+        <div class="cart-items" id="cart-items-container">
+            <div class="empty-cart-msg">
+                <span class="material-symbols-outlined">production_quantity_limits</span>
+                <p>Seu carrinho está vazio.</p>
+            </div>
+        </div>
+
+        <div class="cart-footer">
+            <div class="cart-total">
+                <span>Total:</span>
+                <span id="cart-total-price">R$ 0,00</span>
+            </div>
+            <button class="btn-primary btn-full">Finalizar Compra</button>
+        </div>
+    </div>
+
+    <script src="js/script.js"></script>
+</body>
+</html>
